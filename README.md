@@ -8,7 +8,7 @@ A dead drop or dead letter box is a method of espionage tradecraft used to pass 
 
 Spies and their handlers have been known to perform dead drops using various techniques to hide items (such as money, secrets or instructions) and to signal that the drop has been made. Although the signal and location by necessity must be agreed upon in advance, the signal may or may not be located close to the dead drop itself. The operatives may not necessarily know one another or ever meet.
 
-![Logo](https://raw.githubusercontent.com/themayankjha/deadrop/main/img/logo.png "Logo")
+<img src="https://raw.githubusercontent.com/themayankjha/deadrop/main/img/logo.png" alt="logo" width="200"/>
 
 ## Installation
 
@@ -41,8 +41,8 @@ If it fails due just wait a few minutes and run the command again. It is likely 
 
 - Make sure your port 443 is open and port 80 is closed:-
 
-```sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT```
-```sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j REJECT```
+-- ```iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT```
+-- ```iptables -I INPUT -p tcp -m tcp --dport 80 -j REJECT```
 
 This will allow https requests to your server.
 
