@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, make_response, request,json
 from werkzeug.utils import secure_filename
 import os
-from functions import searchfunc,randomfunc
+from functions import searchfunc,randomfunc,twilioSend
 app = Flask(__name__)
 app.secret_key = "iz&Q9dS8X9a!kGtqgp8PwNBj&VAx4GYR8"
 app.config['UPLOAD_FOLDER']='static/uploads/'
@@ -40,6 +40,7 @@ def contact():
     if request.method == 'POST' and heckor==True:   
         f = request.files['file']
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))) 
+        twilioSend("You just recieved "+f.filename+"on your deaddrop"+request.host,"+919015933718")
     return render_template('contact.html',num=num,heckor=heckor)
 
 @app.route('/about',methods=['GET'])

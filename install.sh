@@ -32,7 +32,15 @@ mkdir /etc/letsencrypt
 mv auth.py /etc/letsencrypt/
 
 
-pip3 install flask gunicorn
+pip3 install flask gunicorn twilio
+
+echo "Input TWILIO_ACCOUNT_SID"
+read TWILIO_ACCOUNT_SID
+echo "Input TWILIO_AUTH_TOKEN"
+read TWILIO_AUTH_TOKEN
+
+export TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID
+export TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN
 
 if [[ "$num" -eq 1 ]]; then
     cd /opt/deadrop/marketdrop

@@ -1,4 +1,9 @@
-import sqlite3
+import sqlite3,os
+from twilio.rest import Client
+
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
 
 def searchfunc(query):
     con=sqlite3.connect('static/musicdb.db')
@@ -17,7 +22,14 @@ def searchfunc(query):
 
     return tracks
 
-
+def twilioSend(mes, number):
+  message = client.messages \
+                  .create(
+                      body=mes,
+                      from_='+12815476047',
+                      to=number
+                  )
+  print(message.sid)
 
 def randomfunc():
     con=sqlite3.connect('static/musicdb.db')

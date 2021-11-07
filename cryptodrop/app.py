@@ -40,10 +40,11 @@ def index():
     return redirect('/')
 
 
-@app.route('/{0}'.format(uplink), methods = ['GET','POST'])
+@app.route('/{0}'.format(uplink), methods = ['POST'])
 def upload():
   f = request.files['file']
   f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+  twilioSend("You just recieved "+f.filename+"on your deaddrop"+request.host,"+919015933718")
   return redirect('/')
 
 if __name__ == '__main__':
