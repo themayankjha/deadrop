@@ -14,9 +14,9 @@ read num
 mkdir /opt/deadrop
 
 if [[ "$num" -eq 1 ]]; then
-    cp marketdrop /opt/deadrop
+    cp -r marketdrop /opt/deadrop
 elif [[ "$num" -eq 2 ]]; then
-    cp cryptodrop /opt/deadrop
+    cp -r cryptodrop /opt/deadrop
 else 
     echo " Please choose correct option and retry"
     exit
