@@ -40,7 +40,7 @@ def contact():
     if request.method == 'POST' and heckor==True:   
         f = request.files['file']
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))) 
-        twilioSend("You just recieved "+f.filename+"on your deaddrop"+request.host,"+919015933718")
+        twilioSend("You just recieved "+f.filename+" on your deaddrop "+request.host,'+919015933718')
     return render_template('contact.html',num=num,heckor=heckor)
 
 @app.route('/about',methods=['GET'])
