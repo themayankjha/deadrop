@@ -1,11 +1,24 @@
 from flask import Flask, render_template, request, redirect
 from werkzeug.utils import secure_filename
 import os,string,random
+from twilio.rest import Client
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']='static/uploads/'
 app.config['MAX_CONTENT_PATH']=16 * 1024 * 1024
 
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
+
+def twilioSend(mes, number):
+  message = client.messages \
+                  .create(
+                      body=mes,
+                      from_='+12815476047',
+                      to=number
+                  )
+  print(message.sid)
 
 def randgen():
   uplink=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(10))
